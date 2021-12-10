@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css';
+import config from "./config";
+import main_routes from "./routes/main_routes";
+import Loading from "./components/utilities/Loading";
+import { ToastContainer, } from 'react-toastify';
 
 function App() {
+  const menu = main_routes.map((route, index) => {
+    return (
+      <Route
+        path={route.path}
+        exact={route.exact}
+        component={route.component}
+      />
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <BrowserRouter basename={config.basePath}>
+        <ToastContainer position='top-left' hideProgressBar={true} className="mt-5"/>
+
+        <Switch>
+          <Suspense fallback={<Loading />}>{menu}</Suspense>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
