@@ -49,6 +49,7 @@ const LoginForm: React.FC = () => {
                 value={email}
                 id="email"
                 disabled={loading}
+                className="event-input"
                 required
               />
               <br />
@@ -61,6 +62,7 @@ const LoginForm: React.FC = () => {
                 value={password}
                 id="pass"
                 disabled={loading}
+                className="event-input"
                 required
               />
               {error ? (

@@ -86,52 +86,56 @@ const RegisterForm: React.FC = () => {
               <input
                 placeholder={'Firstname'}
                 name={'firstname'}
-                type={'text'}
+                type={'firstname...'}
                 onChange={(e) => onChangeFirstname(e)}
                 value={firstname}
                 disabled={loading}
+                className="event-input"
                 required
               />
               <br />
               <label className="lmb-5">Last Name</label>
               <input
-                placeholder={'Last Name'}
+                placeholder={'lastname...'}
                 name={'lastname'}
                 type={'text'}
                 onChange={(e) => onChangeLastname(e)}
                 value={lastname}
                 disabled={loading}
+                className="event-input"
                 required
               />
               <br />
               <label className="lmb-5">Email</label>
               <input
-                placeholder={'Email'}
+                placeholder={'email...'}
                 name={'email'}
                 type={'email'}
                 onChange={(e) => onChangeEmail(e)}
                 value={email}
                 disabled={loading}
+                className="event-input"
                 required
               />
               <br />
               <label className="lmb-5">Password</label>
              <input
-                placeholder={'Password'}
+                placeholder={'password...'}
                 name={'password'}
                 type={'password'}
                 onChange={(e) => onChangePassword(e)}
                 value={password}
                 disabled={loading}
+                className="event-input"
                 required
               />
               {error ? (
                       <span className="error-msg">{error}</span>
                     ) : '' } 
               <button disabled={false} className="search-btn pass mt-5" onClick={(e) => onSubmit(e) }>
-                Register
+                Register 
                 {
-                  loading ? <i className='fas fa-spinner fa-spin'></i> : ''
+                  loading ? <i className='fas fa-spinner fa-spin ml-5'></i> : ''
                 }
               </button>
             </div>

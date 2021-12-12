@@ -189,7 +189,7 @@
   padding: 25px;
   font-family: 'Open Sans';
   font-weight: 600;
-  border-radius: 3px;
+  border-radius: 4px !important;
   border: 1px solid #A8B5EB;
   background: #738bec
   /* background: linear-gradient(to bottom, rgb(55, 166, 240) 0%, rgba(140, 162, 59, 1) 100%); */
@@ -209,6 +209,26 @@ button:hover,
   /* flex-direction: column; */
   margin-bottom: 0px;
   margin-left: -20px;
+}
+
+.ml-5 {
+  margin-left: 8px;
+}
+
+.event-input {
+  height: 40px;
+  padding-left: 10px;
+  border-color: rgba(198, 199, 199, 0.5) !important;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.event-input input[type='password'] {
+  border: none !important;
+}
+
+.event-input input:focus {
+  box-shadow: none !important;
 }
 
   @media only screen and (max-width: 600px) {
