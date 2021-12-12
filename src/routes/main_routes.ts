@@ -5,7 +5,7 @@ const SignUpPage = React.lazy(() => import("../pages/signup-page/index"));
 
 
 const main_routes = [
-    // { path: "/", exact: true, component: HomePage },
+    { path: "/", exact: true, component: HomePage },
     { path: "/login", exact: true, component: SignInPage },
     { path: "/register", exact: true, component: SignUpPage },
   ];

@@ -130,7 +130,9 @@ const RegisterForm: React.FC = () => {
                     ) : '' } 
               <button disabled={false} className="search-btn pass mt-5" onClick={(e) => onSubmit(e) }>
                 Register
-                {/* <LoadingDots loading={loading} /> */}
+                {
+                  loading ? <i className='fas fa-spinner fa-spin'></i> : ''
+                }
               </button>
             </div>
             <div className="text-muted mt-5">© Eventings Inc | All Rights Reserved</div>
