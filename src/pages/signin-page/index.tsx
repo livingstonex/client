@@ -1,13 +1,14 @@
 import React from "react";
 import {
   NavBar,
+  LoginForm
 } from "../../components/index";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <NavBar />
-      <h1>SIGN IN</h1>
+      <LoginForm />
     </>
   );
 };
