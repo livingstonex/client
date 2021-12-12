@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {actionCreators, State} from "../../redux/index";
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FormEvent, MouseEvent } from "react";
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState<string>('');
@@ -21,6 +21,20 @@ const LoginForm: React.FC = () => {
         // this.setState({ val: e.target.value });
     };
 
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    }
+
+    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    }
+
+    const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        
+    }
+
 
   return redirect ? (
     <Redirect to={redirect} />
@@ -37,32 +51,28 @@ const LoginForm: React.FC = () => {
                 placeholder={'Email'}
                 name={'email'}
                 type={'email'}
-                onChange={(e) => onChange(e)}
+                onChange={(e) => onChangeEmail(e)}
                 value={email}
-                // className="new-pass"
                 id="email"
-                // disabled={loading}
+                disabled={loading}
                 required
               />
               <br />
               <label className="lmb-5">Password</label>
-              {/* <div className="new-password-box"> */}
              <input
                 placeholder={'Password'}
                 name={'password'}
                 type={'password'}
-                onChange={(e) => onChange(e)}
+                onChange={(e) => onChangePassword(e)}
                 value={password}
-                // className="new-pass"
                 id="pass"
-                // disabled={loading}
+                disabled={loading}
                 required
               />
-          {/* </div> */}
-              {/* {error ? (
+              {error ? (
                       <span className="error-msg">{error}</span>
-                    ) : '' } */}
-              <button disabled={false} className="search-btn pass mt-5" onClick={()=>{}}>
+                    ) : '' } 
+              <button disabled={false} className="search-btn pass mt-5" onClick={(e) => onSubmit(e) }>
                 Login
                 {/* <LoadingDots loading={loading} /> */}
               </button>
