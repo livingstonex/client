@@ -115,6 +115,14 @@
     margin-top: 10%;
   }
 
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+  }
+
   .reset-container {
     width: 40% !important;
     margin-left: 10px;

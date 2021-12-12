@@ -15,12 +15,6 @@ const LoginForm: React.FC = () => {
     const dispatch = useDispatch();
     const { login } = bindActionCreators(actionCreators, dispatch);
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        // const { email, }
-        // setVal(e.target.value);
-        // this.setState({ val: e.target.value });
-    };
-
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
