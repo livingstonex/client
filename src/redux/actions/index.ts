@@ -10,4 +10,14 @@ import { AuthActionTypes } from "../action-types/index";
     payload: boolean;
   }
 
-  export type Action = loginAction | logoutAction;
+  interface storeTokenAction {
+    type: AuthActionTypes.STORE_TOKEN;
+    payload: string;
+  }
+
+  interface storeUserAction {
+    type: AuthActionTypes.STORE_USER;
+    payload: string;
+  }
+
+  export type Action = loginAction | logoutAction | storeTokenAction | storeUserAction;

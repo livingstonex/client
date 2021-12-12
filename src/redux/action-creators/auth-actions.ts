@@ -14,3 +14,17 @@ export const logout = () => async (dispatch: Dispatch) => {
       payload: false,
     });
   };
+
+export const storeToken = (token: string) => async (dispatch: Dispatch) => {
+    dispatch({
+      type: AuthActionTypes.STORE_TOKEN,
+      payload: token,
+    });
+  };
+
+export const storeUser = (email: string) => async (dispatch: Dispatch) => {
+    dispatch({
+      type: AuthActionTypes.STORE_USER,
+      payload: email,
+    });
+  };
