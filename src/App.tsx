@@ -7,6 +7,9 @@ import main_routes from "./routes/main_routes";
 import protected_routes from "./routes/protected_routes";
 import Loading from "./components/utilities/Loading";
 import { ToastContainer, } from 'react-toastify';
+import {
+  NavBar
+} from "./components";
 
 function App() {
   const menu = main_routes.map((route, index) => {
@@ -36,6 +39,7 @@ function App() {
 
         <Switch>
           <Suspense fallback={<Loading />}>
+            <NavBar />
             {menu}
             {guarded}
           </Suspense>

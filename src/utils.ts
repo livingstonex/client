@@ -8,7 +8,7 @@ const request: any = axios.create({
 export const callApi = (endpoint: string, data = {}, method = 'get') => {
     method = ['get', 'post', 'delete'].includes(method.toLowerCase()) ? method.toLowerCase() : 'post';
     return new Promise((resolve, reject) => {
-      const sendData = method === 'get' || method === 'delete' ? { params: data } : { ...data };
+      const sendData = { ...data };
       request[method](endpoint, sendData)
         .then((res: any) => resolve(res.data))
         .catch((err: any) => {
@@ -24,4 +24,7 @@ export const callApi = (endpoint: string, data = {}, method = 'get') => {
         });
     });
   };
+
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+export const formatDate = (time: string) => new Date(time).toLocaleDateString('en-US', options as any).replace('GMT', '').replace('T', "");
 

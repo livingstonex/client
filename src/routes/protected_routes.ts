@@ -1,9 +1,9 @@
 import React from 'react';
-const HomePage = React.lazy(() => import("../pages/home-page/index"));
+const EventList = React.lazy(() => import("../pages/event-page/List"));
 
 
 const main_routes = [
-    { path: "/", exact: true, component: HomePage },
+    { path: "/events", exact: true, component: EventList },
   ];
 
 export default main_routes;

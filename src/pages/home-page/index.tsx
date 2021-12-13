@@ -8,7 +8,6 @@ const HomePage: React.FC = () => {
   return (
     <>
         <div className="background">
-            <NavBar />
             <Content />
         </div>
     </>

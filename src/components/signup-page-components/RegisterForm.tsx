@@ -62,6 +62,7 @@ const RegisterForm: React.FC = () => {
           storeToken(res.token);
           storeUser(res.user.email);
           setLoading(false);
+          setRedirect("/events");
           return toast.success("Success");
         })
         .catch(err => {
