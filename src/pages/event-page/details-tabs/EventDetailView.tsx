@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { State } from "../../../redux/index";
+import EventImg from "../../../assets/event_img.jpeg";
 
 interface useParamTypes {
     id: string;
@@ -14,7 +15,8 @@ interface useParamTypes {
     name: string;
     description: string;
     start: string;
-    end: string
+    end: string;
+    image: string;
   }
 
 const EventDetailView = (props: any) => {
@@ -66,6 +68,9 @@ const token = useSelector((state: State) => state.auth.token);
                 <CardTitle className="mt-0">{ event ? event.name : 'Event' }</CardTitle>
               </CardHeader>
               <CardBody>
+                <div className="fill">
+                  { event && event.image ? <img src={event.image} alt="event"/> : <img src={EventImg} alt="event"/>}
+                </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
                     <span className="text-secondary">Description:</span>
@@ -99,15 +104,6 @@ const token = useSelector((state: State) => state.auth.token);
           </Col>
         </Row>
       )}
-      <Row>
-        <Col sm="12">
-          {/* <VerificationAsset
-            // {...props}
-            assets={verification.assets}
-            facility={verification.facility}
-          /> */}
-        </Col>
-      </Row>
     </div>
   );
 }

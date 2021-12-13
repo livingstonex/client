@@ -10,7 +10,7 @@ import {
   NavItem,
   Button,
 } from 'reactstrap';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import classnames from 'classnames';
 import EventDetailView from './details-tabs/EventDetailView';
 import { useParams } from 'react-router-dom';
@@ -78,6 +78,15 @@ const Details: React.FC = (props: any) => {
                          loading ? <span className="fas fa-spinner fa-spin ml-3"></span> : ''
                         }
                       </Button>
+                      <Button
+                        color="primary"
+                        className='mt-2 ml-5'
+                        // onClick={}
+                      >
+                        {/* View Attendees */}
+                        <Link to={`/events/${eventId}/attendees`} className='linker'>View Attendees</Link>
+                      </Button>
+                      
                     
                   </div>
                 </div>
@@ -89,18 +98,18 @@ const Details: React.FC = (props: any) => {
                     <NavItem>
                       <NavLink
                         style={{ color: 'black' }}
-                        href="#"
+                        // href="#"
                         className={classnames({
                           active: location.pathname === `${match.url}`,
                         })}
                         onClick={() => {
-                          history.push(`${match.url}`);
+                          history.push(`/events/${eventId}`);
                         }}
                       >
                         Event
                       </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                       <NavLink
                         style={{ color: 'black' }}
                         href="#"
@@ -108,12 +117,12 @@ const Details: React.FC = (props: any) => {
                           active: location.pathname === `${match.url}/attendees`,
                         })}
                         onClick={() => {
-                          history.push(`${match.url}/teams`);
+                          history.push(`${match.url}/attendees`);
                         }}
                       >
                         Attendees
                       </NavLink>
-                    </NavItem>
+                    </NavItem> */}
                   </Nav>
                   <br />
                   <div>
@@ -127,14 +136,16 @@ const Details: React.FC = (props: any) => {
                           />
                         )}
                       ></Route>
+
                        {/* <Route
-                        exact
+                        exact={true}
                         path={`${match.path}/attendees`}
-                        render={(props) => (
-                          <AttendeesView
-                            {...props}
-                          />
-                        )}
+                        render={(props) => {
+                            console.log('MATCH ', match.path)
+                          return <AttendeeDetailView
+                          {...props}
+                        />
+                        }}
                       ></Route> */}
                     </Switch>
                   </div>
