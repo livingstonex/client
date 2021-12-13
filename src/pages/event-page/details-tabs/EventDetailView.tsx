@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, CardBody,  } from 'reactstrap';
-import { callApi } from '../../../utils';
+import { callApi, formatDate, formatTime } from '../../../utils';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -13,6 +13,8 @@ interface useParamTypes {
   interface eventType {
     name: string;
     description: string;
+    start: string;
+    end: string
   }
 
 const EventDetailView = (props: any) => {
@@ -24,10 +26,10 @@ const EventDetailView = (props: any) => {
 const token = useSelector((state: State) => state.auth.token);
 
   useEffect(()=>{
-    fetchDepartments();
+    fetchEvent();
   },[]);
 
-  const fetchDepartments = useCallback(async () => {
+  const fetchEvent = useCallback(async () => {
         setLoading(true);
 
         const header = {
@@ -46,7 +48,7 @@ const token = useSelector((state: State) => state.auth.token);
                 setLoading(false);
                 return toast.error(err.message);
             })
-      },[id]);
+      },[id, token]);
 
   return (
     <div>
@@ -61,26 +63,37 @@ const token = useSelector((state: State) => state.auth.token);
             {/* <Col> */}
             <Card className="card-chart">
               <CardHeader>
-                <CardTitle className="mt-0">Event</CardTitle>
+                <CardTitle className="mt-0">{ event ? event.name : 'Event' }</CardTitle>
               </CardHeader>
               <CardBody>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
-                    <span className="text-secondary">Name:</span>
+                    <span className="text-secondary">Description:</span>
                   </div>
                   <span>
                     <span>
-                      <strong>{event ? event.name : ''}</strong>
+                      <strong>{event ? event.description : ''}</strong>
                     </span>
                   </span>
                 </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
-                    <span className="text-secondary">InCharge</span>
+                    <span className="text-secondary">Start Day:</span>
                   </div>
-                  {/* <div> {department.inCharge ? department.inCharge : 'No leader yet'} </div> */}
+                  <div> {event ? formatDate(event.start) : ''} </div>
                 </div>
-                
+                <div className="d-flex mb-3 justify-content-between">
+                  <div>
+                    <span className="text-secondary">End Day:</span>
+                  </div>
+                  <div> {event ? formatDate(event.end) : ''} </div>
+                </div>
+                <div className="d-flex mb-3 justify-content-between">
+                  <div>
+                    <span className="text-secondary">Start time:</span>
+                  </div>
+                  <div> {event ? formatTime(event.start) : ''} </div>
+                </div>
               </CardBody>
             </Card>
           </Col>

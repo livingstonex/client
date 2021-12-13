@@ -16,6 +16,8 @@ import EventDetailView from './details-tabs/EventDetailView';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
+import { callApi } from "../../utils";
+import { toast } from 'react-toastify';
 
 interface useParamTypes {
     id: string;
@@ -25,12 +27,32 @@ const Details: React.FC = (props: any) => {
   const { history, match, location } = props;
   const { id: eventId } = useParams<useParamTypes>();
   const userId = useSelector((state: State) => state.auth.user);
+  const token = useSelector((state: State) => state.auth.token);
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const registerForEvent = () => {
-    console.log('EVENT ID ', eventId);
-    console.log('User ID ', userId);
+    if (!eventId || !userId) {
+        return toast.warn("Invalid user or event");
+    }
+
+    setLoading(true);
+
+    const header = {
+        headers: {
+        Authorization: 'Bearer ' + token
+      }
+    };
+
+    callApi("/registrations", header)
+        .then((res) => {
+            setLoading(false);
+            return toast.success("Registration successful.")
+        })
+        .catch((err) => {
+            setLoading(false);
+            return toast.error(err)
+        });
   }
 
 
@@ -48,7 +70,7 @@ const Details: React.FC = (props: any) => {
                       <Button
                         color="success"
                         className='mt-2'
-                        onClick={registerForEvent}
+                        onClick={() => registerForEvent()}
                         disabled={loading}
                       >
                         Attend
