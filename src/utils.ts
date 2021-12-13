@@ -10,7 +10,13 @@ export const callApi = (endpoint: string, data = {}, method = 'get') => {
     return new Promise((resolve, reject) => {
       const sendData = { ...data };
       request[method](endpoint, sendData)
-        .then((res: any) => resolve(res.data))
+        .then((res: any) => {
+          if (res.data.error) {
+            reject(res.data.error);
+          }
+          
+          resolve(res.data)
+        })
         .catch((err: any) => {
           if (err.response) {
             // Response from server w/ error

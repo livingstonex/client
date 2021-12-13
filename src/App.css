@@ -21,7 +21,21 @@
     /* text-decoration: none; */
     text-align: center;
     text-decoration-line: none;
-    color: white;
+    color: rgb(255, 255, 255);
+  }
+
+  .btn-link {
+    color:rgb(33, 102, 252) !important;
+  }
+
+  .text-btn {
+    background-color: transparent !important;
+    border: none !important;
+    color:rgb(56, 115, 245)
+  }
+
+  .text-btn:hover {
+    color:rgb(104, 147, 240)
   }
 
  .btn-outline-bridge {

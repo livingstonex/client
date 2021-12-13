@@ -19,7 +19,7 @@ import { Action } from "../actions/index";
             return Object.assign({}, state, { authenticated: action.payload });
         
           case AuthActionTypes.LOGOUT:
-            return Object.assign({}, state, { authenticated: action.payload });
+            return Object.assign({}, state, { authenticated: action.payload, user: null, token: "" });
 
           case AuthActionTypes.STORE_TOKEN:
               return Object.assign({}, state, { token: action.payload });

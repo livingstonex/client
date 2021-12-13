@@ -7,7 +7,6 @@ import {
 const HomePage: React.FC = () => {
   return (
     <>
-      <NavBar />
       <RegisterForm />
     </>
   );

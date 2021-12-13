@@ -8,7 +8,7 @@ export const login = () => async (dispatch: Dispatch) => {
     });
   };
 
-export const logout = () => async (dispatch: Dispatch) => {
+export const logout = () => (dispatch: Dispatch) => {
     dispatch({
       type: AuthActionTypes.LOGOUT,
       payload: false,

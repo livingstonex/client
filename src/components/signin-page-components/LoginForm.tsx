@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {actionCreators, State} from "../../redux/index";
 import type { ChangeEvent, FormEvent, MouseEvent } from "react";
+import { callApi } from "../../utils";
+import { toast } from 'react-toastify';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState<string>('');
@@ -13,7 +15,7 @@ const LoginForm: React.FC = () => {
     const [redirect, setRedirect] = useState<any>('');
 
     const dispatch = useDispatch();
-    const { login } = bindActionCreators(actionCreators, dispatch);
+    const { login, storeToken, storeUser } = bindActionCreators(actionCreators, dispatch);
 
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -26,7 +28,34 @@ const LoginForm: React.FC = () => {
     const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        
+        if (loading) return;
+
+        if (!email || !password) {
+            return setError('Please fill in all fields!');
+        }
+
+        setError('');
+
+        setLoading(true);
+
+        const payload = {
+            "email": email,
+            "password": password
+        }
+
+        callApi(`/login`, payload, 'post')
+        .then((res: any) => {
+          login();
+          storeToken(res.token);
+          storeUser(res.user.id);
+          setLoading(false);
+          setRedirect("/events")
+          return toast.success("Success");
+        })
+        .catch(err => {
+          setLoading(false);
+          return toast.error(err);
+        });
     }
 
 

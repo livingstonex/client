@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators, State} from "../../redux/index";
 
 const Header: React.FC = () => {
-  return (
+  const dispatch = useDispatch();
+  const [redirect, setRedirect] = useState<string>('');
+
+  const { logout } = bindActionCreators(actionCreators, dispatch);
+
+  const authenticated = useSelector((state: State) => state.auth.authenticated);
+
+  const logOut = () => {
+    logout();
+    setRedirect('/');
+  }
+
+  return redirect ? <Redirect to={redirect} /> : (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light bg-transparent">
         <div className="container-fluid">
@@ -27,7 +43,12 @@ const Header: React.FC = () => {
               </li>
             </ul>
             <form className="d-flex navbar navbar-nav">
-                  <a href="/login" className="btn-outline-bridge">Login</a>
+                {
+                  authenticated 
+                      // ? <button className="text-btn" onClick={logOut}>Logout</button> 
+                      ? <a href="/" onClick={logOut} className="btn-link">Logout</a>
+                      : <a href="/login" className="btn-outline-bridge">Login</a>
+                }
             </form>
           </div>
         </div>
