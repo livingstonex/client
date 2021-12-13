@@ -9,6 +9,8 @@ import { State } from "../../redux/index";
 const List = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(20);
 
   useEffect(() => {
     fetechEvents();
@@ -52,7 +54,7 @@ const List = () => {
           <table className="table table-hover">
             <thead className="text-white" style={{backgroundColor: 'darkcyan'}}>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col">S/N</th>
                 <th scope="col">Name</th>
                 <th scope="col">Start date</th>
                 <th scope="col">End date</th>
@@ -74,7 +76,7 @@ const List = () => {
             {
                 events && events.map((event: any, i) => (
                   <tr key={i} >
-                    <td>{1}</td>
+                    <td>{loading ? 'x' : i + 1 + (page - 1) * limit}</td>
                     <td>{event.name}</td>
                     <td>{formatDate(event.start)}</td>
                     <td>{formatDate(event.end)}</td>
@@ -82,9 +84,9 @@ const List = () => {
                       {/* <button type="button" onClick={() => view(department._id)} className="btn btn-small btn-success">View</button> */}
                       <Link to={{pathname: `/events/${event.id}` }} className="btn btn-small btn-success">View</Link>
                     </td>
-                    <td>
-                      {/* <button  className="btn btn-small btn-info" onClick={() => editDepartment(department)}>Update</button> */}
-                    </td>
+                    {/* <td>
+                      <button  className="btn btn-small btn-info" onClick={() => {}}>Update</button>
+                    </td> */}
                   </tr>
                 ))
             }
