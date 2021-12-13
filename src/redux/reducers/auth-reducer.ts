@@ -3,13 +3,13 @@ import { Action } from "../actions/index";
 
   interface initialStateI {
     authenticated: boolean;
-    user: string;
+    user: null;
     token: string;
   }
 
   const initialState = {
     authenticated: false,
-    user: "",
+    user: null,
     token: "",
   };
 

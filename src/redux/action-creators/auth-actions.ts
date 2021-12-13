@@ -22,9 +22,9 @@ export const storeToken = (token: string) => async (dispatch: Dispatch) => {
     });
   };
 
-export const storeUser = (email: string) => async (dispatch: Dispatch) => {
+export const storeUser = (user_id: string) => async (dispatch: Dispatch) => {
     dispatch({
       type: AuthActionTypes.STORE_USER,
-      payload: email,
+      payload: user_id,
     });
   };

@@ -60,7 +60,7 @@ const RegisterForm: React.FC = () => {
         .then((res: any) => {
           login();
           storeToken(res.token);
-          storeUser(res.user.email);
+          storeUser(res.user.id);
           setLoading(false);
           setRedirect("/events")
           return toast.success("Success");

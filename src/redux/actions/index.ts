@@ -17,7 +17,7 @@ import { AuthActionTypes } from "../action-types/index";
 
   interface storeUserAction {
     type: AuthActionTypes.STORE_USER;
-    payload: string;
+    payload: number;
   }
 
   export type Action = loginAction | logoutAction | storeTokenAction | storeUserAction;
