@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { callApi, formatDate, } from '../../utils';
@@ -11,6 +11,8 @@ const List = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(20);
+  const [search, setSearch] = useState<string>('');
+  const [searchLoading, setSearchLoading] = useState<boolean>(false);
 
   useEffect(() => {
     fetechEvents();
@@ -29,16 +31,47 @@ const List = () => {
     };
 
     setLoading(true);
+
     callApi('/events', header)
+        .then((res: any) => {
+            setLoading(false);
+            setEvents(res);
+            console.log('RESPONSE: ', res);
+        })
+        .catch((err) => {
+            setLoading(false);
+            console.log('ERROR: ', err);
+            return toast.error(err.message);
+        });
+  }
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  }
+
+  const onSearch = () => {
+    const header = {
+        headers: {
+        Authorization: 'Bearer ' + token
+      }
+    };
+
+    if (!search) {
+        fetechEvents(); 
+    }
+
+    setSearchLoading(true);
+
+    callApi(`/search?q=${search}`, header)
     .then((res: any) => {
-        setLoading(false);
+        setSearchLoading(false);
         setEvents(res);
         console.log('RESPONSE: ', res);
     })
     .catch((err) => {
-        setLoading(false);
+        setSearchLoading(false);
         console.log('ERROR: ', err);
-        return toast.error(err.message);
+        return toast.error(err.status);
     });
   }
 
@@ -47,8 +80,26 @@ const List = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-12 mt-5">
+            {/* <label className="lmb-5">Search:</label> */}
+            <input
+                placeholder={'Search...'}
+                name='search'
+                type='text'
+                onChange={onChange}
+                // value={event.name}
+                disabled={loading}
+                className="event-input ml-5"
+                // width="70%"
+                required
+            />
+            <button onClick={onSearch} className="btn btn-small sec mb-1 ml-5">Search</button>
+            <br />
+            <br />
+
           <table className="table table-hover">
-            <thead className="text-white" style={{backgroundColor: 'darkcyan'}}>
+            <thead className="text-white pri" 
+            // style={{backgroundColor: 'darkcyan'}}
+            >
               <tr>
                 <th scope="col">S/N</th>
                 <th scope="col">Name</th>
@@ -77,8 +128,7 @@ const List = () => {
                     <td>{formatDate(event.start)}</td>
                     <td>{formatDate(event.end)}</td>
                     <td>
-                      {/* <button type="button" onClick={() => view(department._id)} className="btn btn-small btn-success">View</button> */}
-                      <Link to={{pathname: `/events/${event.id}` }} className="btn btn-small btn-success">View</Link>
+                      <Link to={{pathname: `/events/${event.id}` }} className="btn btn-small sec">View</Link>
                     </td>
                     {/* <td>
                       <button  className="btn btn-small btn-info" onClick={() => {}}>Update</button>

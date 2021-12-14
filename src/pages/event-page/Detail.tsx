@@ -55,6 +55,9 @@ const Details: React.FC = (props: any) => {
         });
   }
 
+  const goBack = () => {
+    history.goBack()
+  }
 
   return (
     <div className="content">
@@ -63,8 +66,9 @@ const Details: React.FC = (props: any) => {
             <Card>
               <CardHeader className="ml-2">
                 <div className="d-flex justify-content-between align-contents-center">
-                  <div>
-                    <p className="category mt-3">Event Detail</p>
+                  <div className='d-flex '>
+                    <p className="text-btn mt-3 ml-5" onClick={goBack}><i className='fa fa-angle-left'></i> back</p>
+                    {/* <p className="category mt-3 ml-5">Event Detail</p> */}
                   </div>
                   <div>
                       <Button
