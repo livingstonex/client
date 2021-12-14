@@ -10,8 +10,8 @@ import PaginationComponent from '../../components/utilities/Pagination';
 const List = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
+  const [pages, setPages] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
   const [search, setSearch] = useState<string>('');
   const [searchLoading, setSearchLoading] = useState<boolean>(false);
@@ -81,7 +81,7 @@ const List = () => {
 
   const onSetPage = (page: number) => {
       if (page) {
-        setPage(page);
+        setPage(page - 1);
         fetechEvents();
       }
   }
@@ -134,7 +134,7 @@ const List = () => {
             {
                 events && events.map((event: any, i) => (
                   <tr key={i} >
-                    <td>{loading ? 'x' : i + 1 + (page - 1) * limit}</td>
+                    <td>{loading ? 'x' : i + 1 + (page) * limit}</td>
                     <td>{event.name}</td>
                     <td>{formatDate(event.start)}</td>
                     <td>{formatDate(event.end)}</td>
@@ -162,7 +162,7 @@ const List = () => {
               
             </tbody>
           </table>
-          <PaginationComponent total={pages} page={page} onChange={onSetPage}/>
+          <PaginationComponent total={pages} page={page + 1} onChange={onSetPage}/>
         </div>
       </div>
     </div>
