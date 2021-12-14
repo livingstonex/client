@@ -39,7 +39,7 @@ export const formatTime = (time: string) => {
   const dateObject = new Date(time);
 
   const formatedTime = dateObject.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-  
+
   return formatedTime;
 };
 

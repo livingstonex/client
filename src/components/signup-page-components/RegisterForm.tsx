@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, } from "react";
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {actionCreators, State} from "../../redux/index";
-import type { ChangeEvent, FormEvent, MouseEvent } from "react";
+import {actionCreators} from "../../redux/index";
+import type { ChangeEvent, MouseEvent } from "react";
 import { callApi } from "../../utils";
 import { toast } from 'react-toastify';
-import store from "../../redux/store";
 
 const RegisterForm: React.FC = () => {
     const [firstname, setFirstname] = useState<string>('');

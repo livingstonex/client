@@ -16,7 +16,7 @@ interface useParamTypes {
     description: string;
     start: string;
     end: string;
-    image: string;
+    photo: string;
   }
 
 const EventDetailView = (props: any) => {
@@ -60,7 +60,7 @@ const token = useSelector((state: State) => state.auth.token);
                     </div>
                 ) 
                 : (
-        <Row>
+        <Row className='d-flex justify-content-center w-70'>
           <Col sm="6">
             {/* <Col> */}
             <Card className="card-chart">
@@ -69,7 +69,7 @@ const token = useSelector((state: State) => state.auth.token);
               </CardHeader>
               <CardBody>
                 <div className="fill">
-                  { event && event.image ? <img src={event.image} alt="event"/> : <img src={EventImg} alt="event"/>}
+                  { event && event.photo ? <img src={`http://localhost:4000${event.photo}`} width={60} alt="event"/> : <img src={EventImg} alt="event"/>}
                 </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>

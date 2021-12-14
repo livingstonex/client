@@ -68,8 +68,8 @@ const Details: React.FC = (props: any) => {
                   </div>
                   <div>
                       <Button
-                        color="success"
-                        className='mt-2'
+                        // color="success"
+                        className='mt-2 tertiary'
                         onClick={() => registerForEvent()}
                         disabled={loading}
                       >
@@ -79,15 +79,19 @@ const Details: React.FC = (props: any) => {
                         }
                       </Button>
                       <Button
-                        color="primary"
-                        className='mt-2 ml-5'
+                        // color="primary"
+                        className='mt-2 ml-5 sec'
                         // onClick={}
                       >
                         {/* View Attendees */}
-                        <Link to={`/events/${eventId}/attendees`} className='linker'>View Attendees</Link>
+                        <Link to={`/events/${eventId}/attendees`} className='linker'>Attendees</Link>
                       </Button>
-                      
-                    
+                      <Button
+                        // color="primary"
+                        className='mt-2 ml-5 pri'
+                      >
+                        <Link to={`/events/create/new`} className='linker'>Create Event</Link>
+                      </Button>
                   </div>
                 </div>
               </CardHeader>

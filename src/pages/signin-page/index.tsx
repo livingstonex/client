@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  NavBar,
   LoginForm
 } from "../../components/index";
 

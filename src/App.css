@@ -35,7 +35,8 @@
   }
 
   .text-btn:hover {
-    color:rgb(104, 147, 240)
+    color:rgb(104, 147, 240);
+    cursor: pointer !important;
   }
 
  .btn-outline-bridge {
@@ -265,6 +266,25 @@ button:hover,
 
 .linker:hover {
   color: white !important;
+}
+
+.pri {
+  background-color: #4362eb !important;
+  border: none !important;
+}
+
+.sec {
+  background-color: #768df7 !important;
+  border: none !important;
+}
+
+.tertiary {
+  background-color: #138a30b4 !important;
+  border: none !important;
+}
+
+.w-70 {
+  width: 100vw;
 }
 
   @media only screen and (max-width: 600px) {

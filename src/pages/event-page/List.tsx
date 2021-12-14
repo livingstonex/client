@@ -42,10 +42,6 @@ const List = () => {
     });
   }
 
-  const view = async (id: string) => {
-    window.open(`/departments/${id}`);
-  }
-
 
   return (
     <div className="container">

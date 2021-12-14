@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, CardBody, Button,  } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-import { callApi, formatDate, formatTime } from '../../utils';
+import { callApi, formatDate } from '../../utils';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
-import EventImg from "../../assets/event_img.jpeg";
 
 interface useParamTypes {
     id: string;
