@@ -12,7 +12,7 @@ const Content: React.FC = () => {
             <div className="col-md-2"></div>
             <div className="col-md-4 d-flex justify-content-center">
                 <div className="d-flex align-items-center">
-                    <div className="flex-column">
+                    <div className="flex-column text-center">
                         <p className="text-awesome">Explore Awesome events at your finger tips.</p>
                         <p className="text-awesome-child">14 days free trial.</p>
                         <a href="/register" className="btn-outline-register">Register now</a>
@@ -20,7 +20,7 @@ const Content: React.FC = () => {
                 </div>
                 
             </div>
-            <div className="col-md-4 d-flex justify-content-center">
+            <div className="col-md-4 d-flex justify-content-center mt-5">
                 <div className="d-flex align-items-center">
                     <p><img src={Events} alt="Events" width="100%" /></p>
                 </div>

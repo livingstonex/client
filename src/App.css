@@ -230,6 +230,10 @@ button:hover,
   margin-left: 8px;
 }
 
+.mr-5 {
+  margin-right: 8px;
+}
+
 .event-input {
   height: 40px;
   padding-left: 10px;

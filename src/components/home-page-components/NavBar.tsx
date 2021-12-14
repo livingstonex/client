@@ -46,7 +46,10 @@ const Header: React.FC = () => {
                 {
                   authenticated 
                       // ? <button className="text-btn" onClick={logOut}>Logout</button> 
-                      ? <a href="/" onClick={logOut} className="btn-link">Logout</a>
+                      ? <div>
+                          <a href="/events" className="btn-link mr-5">Dashboard</a>
+                          <a href="/" onClick={logOut} className="btn-link ml-5">Logout</a>
+                        </div>
                       : <a href="/login" className="btn-outline-bridge">Login</a>
                 }
             </form>
