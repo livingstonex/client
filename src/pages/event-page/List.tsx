@@ -4,13 +4,15 @@ import { toast } from 'react-toastify';
 import { callApi, formatDate, } from '../../utils';
 import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
+import PaginationComponent from '../../components/utilities/Pagination';
 
 
 const List = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(20);
+  const [pages, setPages] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(5);
   const [search, setSearch] = useState<string>('');
   const [searchLoading, setSearchLoading] = useState<boolean>(false);
 
@@ -32,10 +34,12 @@ const List = () => {
 
     setLoading(true);
 
-    callApi('/events', header)
+    callApi(`/events?page=${page}`, header)
         .then((res: any) => {
             setLoading(false);
-            setEvents(res);
+            const { pages } = res.meta;
+            setPages(pages);
+            setEvents(res.data);
             console.log('RESPONSE: ', res);
         })
         .catch((err) => {
@@ -75,6 +79,13 @@ const List = () => {
     });
   }
 
+  const onSetPage = (page: number) => {
+      if (page) {
+        setPage(page);
+        fetechEvents();
+      }
+  }
+
 
   return (
     <div className="container">
@@ -92,7 +103,7 @@ const List = () => {
                 // width="70%"
                 required
             />
-            <button onClick={onSearch} className="btn btn-small sec mb-1 ml-5">Search</button>
+            <button onClick={onSearch} className="btn btn-small sec mb-1 ml-5">Search { searchLoading && <i className='fas fa-spinner fa-spin ml-5'></i> }</button>
             <br />
             <br />
 
@@ -151,6 +162,7 @@ const List = () => {
               
             </tbody>
           </table>
+          <PaginationComponent total={pages} page={page} onChange={onSetPage}/>
         </div>
       </div>
     </div>
