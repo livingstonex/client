@@ -10,7 +10,7 @@ const onChange = (num) => {
 
 const PaginationComponent = ({
   size = 'md',
-  onChange = this.onChange,
+  onChange = onChange,
   page = 1,
   total = 15,
 }) => {
