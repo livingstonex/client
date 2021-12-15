@@ -81,7 +81,7 @@ const CreateEvent = (props: any) => {
             console.log("Create ERRRROOORRR: ", err);
             setLoading(false);
             return toast.error(err)
-        })
+        });
       }
 
 

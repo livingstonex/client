@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
+import axios from 'axios';
 
 interface useParamTypes {
     id: string;
@@ -72,21 +73,26 @@ const { id: eventId } = useParams<useParamTypes>();
             return toast.warn("Invalid user or event");
         }
     
-        setRegisterLoading(true);
+        setLoading(true);
     
-        const header = {
-            headers: {
-            Authorization: 'Bearer ' + token
-          }
-        };
+        const payload = {
+            "event_id": eventId,
+            "user_id": userId
+        }
     
-        callApi("/registrations", header, 'post')
-            .then((res) => {
-              setRegisterLoading(false);
-                return toast.success("Registration successful.")
+        const headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        };   
+        
+        axios.post("http://localhost:4000/api/v1/registrations", payload, { headers: headers }).then((res) => {
+                console.log("Registration Response: ", res);
+                setLoading(false);
+                return toast.success("Event registered for successfully.");
             })
             .catch((err) => {
-              setRegisterLoading(false);
+                console.log("Create ERRRROOORRR: ", err);
+                setLoading(false);
                 return toast.error(err)
             });
       }

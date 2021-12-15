@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
 import { callApi } from "../../utils";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 interface useParamTypes {
     id: string;
@@ -38,24 +39,23 @@ const Details: React.FC = (props: any) => {
 
     setLoading(true);
 
-    const header = {
-        headers: {
-        'Authorization': 'Bearer ' + token,
-        "Content-Type": 'application/json'
-      }
-    };
-
     const payload = {
         "event_id": eventId,
         "user_id": userId
     }
 
-    callApi("/registrations", header, 'post')
-        .then((res) => {
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    };   
+    
+    axios.post("http://localhost:4000/api/v1/registrations", payload, { headers: headers }).then((res) => {
+            console.log("Registration Response: ", res);
             setLoading(false);
-            return toast.success("Registration successful.")
+            return toast.success("Event registered for successfully.");
         })
         .catch((err) => {
+            console.log("Create ERRRROOORRR: ", err);
             setLoading(false);
             return toast.error(err)
         });
