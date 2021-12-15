@@ -40,11 +40,17 @@ const Details: React.FC = (props: any) => {
 
     const header = {
         headers: {
-        Authorization: 'Bearer ' + token
+        'Authorization': 'Bearer ' + token,
+        "Content-Type": 'application/json'
       }
     };
 
-    callApi("/registrations", header)
+    const payload = {
+        "event_id": eventId,
+        "user_id": userId
+    }
+
+    callApi("/registrations", header, 'post')
         .then((res) => {
             setLoading(false);
             return toast.success("Registration successful.")

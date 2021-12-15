@@ -66,7 +66,7 @@ const List = () => {
 
     setSearchLoading(true);
 
-    callApi(`/search?q=${search}`, header)
+    callApi(`/events/search?q=${search}`, header)
     .then((res: any) => {
         setSearchLoading(false);
         setEvents(res);

@@ -72,7 +72,7 @@ const CreateEvent = (props: any) => {
           };
 
     
-        axios.post("http://localhost:4000/events", data, { headers: headers }).then((res) => {
+        axios.post("http://localhost:4000/api/v1/events", data, { headers: headers }).then((res) => {
             console.log("Create Response: ", res);
             setLoading(false);
             return toast.success("Event Created.");

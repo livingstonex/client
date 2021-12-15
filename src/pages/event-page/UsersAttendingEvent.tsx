@@ -67,7 +67,7 @@ const { id: eventId } = useParams<useParamTypes>();
         history.goBack()
       }
 
-      const registerForEvent = () => {
+  const registerForEvent = () => {
         if (!eventId || !userId) {
             return toast.warn("Invalid user or event");
         }
@@ -80,7 +80,7 @@ const { id: eventId } = useParams<useParamTypes>();
           }
         };
     
-        callApi("/registrations", header)
+        callApi("/registrations", header, 'post')
             .then((res) => {
               setRegisterLoading(false);
                 return toast.success("Registration successful.")
