@@ -85,9 +85,16 @@ const { id: eventId } = useParams<useParamTypes>();
             'Content-Type': 'application/json'
         };   
         
-        axios.post("http://localhost:4000/api/v1/registrations", payload, { headers: headers }).then((res) => {
-                console.log("Registration Response: ", res);
+        axios.post("http://localhost:4000/api/v1/registrations", payload, { headers: headers }).then((res: any) => {
+                // console.log("Registration Response: ", res);
                 setLoading(false);
+
+                const { message } = res.data;
+
+                if (message) {
+                  return toast.info(message);
+                }
+
                 return toast.success("Event registered for successfully.");
             })
             .catch((err) => {
