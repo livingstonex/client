@@ -89,6 +89,7 @@ const RegisterForm: React.FC = () => {
               name="firstname"
               placeholder="firstname..."
               type="text"
+              data-test="register-input-firstname"
             />
             <br />
             <CustomTextInput
@@ -99,6 +100,7 @@ const RegisterForm: React.FC = () => {
               name="lastname"
               placeholder="lastname..."
               type="text"
+              data-test="register-input-lastname"
             />
             <br />
             <CustomTextInput
@@ -109,6 +111,7 @@ const RegisterForm: React.FC = () => {
               name="email"
               placeholder="email..."
               type="text"
+              data-test="register-input-email"
             />
             <br />
             <CustomTextInput
@@ -119,6 +122,7 @@ const RegisterForm: React.FC = () => {
               name="password"
               placeholder="password..."
               type="password"
+              data-test="register-input-password"
             />
 
             {error ? <span className="error-msg">{error}</span> : ""}

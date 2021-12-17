@@ -41,17 +41,5 @@ describe("Register Form component tests", () => {
     expect(
       container.querySelector("[data-test='register-form']")
     ).toBeInTheDocument();
-
-    expect(
-      container
-        .querySelector("[data-test='register-input-firstname']")
-        ?.getAttribute("firstname")
-    ).toBe("email");
-
-    expect(
-      container
-        .querySelector("[data-test='login-input-password']")
-        ?.getAttribute("name")
-    ).toBe("password");
   });
 });
