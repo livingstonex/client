@@ -1,10 +1,10 @@
-import { LoginForm } from "../components";
+import { RegisterForm } from "../components";
 import * as ReactDom from "react-dom";
 import React from "react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 
-describe("Login component tests", () => {
+describe("Register Form component tests", () => {
   let container: HTMLDivElement;
   const initialState = { output: 10 };
   const mockStore = configureStore();
@@ -17,7 +17,7 @@ describe("Login component tests", () => {
     document.body.appendChild(container);
     ReactDom.render(
       <Provider store={store}>
-        <LoginForm />
+        <RegisterForm />
       </Provider>,
       container
     );
@@ -30,20 +30,22 @@ describe("Login component tests", () => {
 
   it("Renders correctly initial login page document", () => {
     const inputs = container.querySelectorAll("input");
-    expect(inputs).toHaveLength(2);
-    expect(inputs[0].name).toBe("email");
-    expect(inputs[1].name).toBe("password");
+    expect(inputs).toHaveLength(4);
+    expect(inputs[0].name).toBe("firstname");
+    expect(inputs[1].name).toBe("lastname");
+    expect(inputs[2].name).toBe("email");
+    expect(inputs[3].name).toBe("password");
   });
 
-  it("Renders correctly initial login page document with data-test query", () => {
+  it("Renders correctly initial register component document with data-test query", () => {
     expect(
-      container.querySelector("[data-test='login-form']")
+      container.querySelector("[data-test='register-form']")
     ).toBeInTheDocument();
 
     expect(
       container
-        .querySelector("[data-test='login-input-email']")
-        ?.getAttribute("name")
+        .querySelector("[data-test='register-input-firstname']")
+        ?.getAttribute("firstname")
     ).toBe("email");
 
     expect(

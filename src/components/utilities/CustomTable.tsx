@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils";
 
@@ -7,10 +7,6 @@ interface IProps {
   events: any[];
   page: number;
   limit: number;
-  //   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  //   type: string;
-  //   placeholder: string;
-  //   onSearch: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const CustomTable: React.FC<IProps> = ({ loading, events, page, limit }) => {

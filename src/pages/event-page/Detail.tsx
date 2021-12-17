@@ -90,10 +90,10 @@ const Details: React.FC = (props: any) => {
                 </div>
                 <div>
                   <Button
-                    // color="success"
                     className="mt-2 tertiary"
                     onClick={() => registerForEvent()}
                     disabled={loading}
+                    data-test="event-registration-button"
                   >
                     Attend
                     {loading ? (
@@ -102,12 +102,7 @@ const Details: React.FC = (props: any) => {
                       ""
                     )}
                   </Button>
-                  <Button
-                    // color="primary"
-                    className="mt-2 ml-5 sec"
-                    // onClick={}
-                  >
-                    {/* View Attendees */}
+                  <Button className="mt-2 ml-5 sec">
                     <Link
                       to={`/events/${eventId}/attendees`}
                       className="linker"

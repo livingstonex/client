@@ -76,7 +76,7 @@ const RegisterForm: React.FC = () => {
   ) : (
     <div>
       <div className="center-content">
-        <div className="register-form">
+        <div className="register-form" data-test="register-form">
           <div className="reset-container">
             <h3 className="mb-0 logo-text">Sign Up</h3>
             <div className="text-muted mt-3">Get your new account</div>
