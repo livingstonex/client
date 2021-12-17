@@ -3,14 +3,14 @@ import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 // import { isMobile } from '../../utils';
 
-let page = 1;
-const onChange = (num) => {
-  page = num;
-};
+// let page = 1;
+// const onChange = (num) => {
+//   page = num;
+// };
 
 const PaginationComponent = ({
   size = 'md',
-  onChange = onChange,
+  onChange,
   page = 1,
   total = 15,
 }) => {
@@ -32,7 +32,7 @@ const PaginationComponent = ({
           .map((_, i) => (
             <PaginationItem
               key={i}
-              active={page == i + start}
+              active={page === i + start}
               onClick={() => onChange(i + start)}
             >
               <PaginationLink>{i + start}</PaginationLink>

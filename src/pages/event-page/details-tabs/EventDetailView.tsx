@@ -1,75 +1,84 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, CardBody,  } from 'reactstrap';
-import { callApi, formatDate, formatTime } from '../../../utils';
-import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from "react";
+import { Row, Col, Card, CardHeader, CardTitle, CardBody } from "reactstrap";
+import { callApi, formatDate, formatTime } from "../../../utils";
+import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { State } from "../../../redux/index";
 import EventImg from "../../../assets/event_img.jpeg";
 
 interface useParamTypes {
-    id: string;
-  }
+  id: string;
+}
 
-  interface eventType {
-    name: string;
-    description: string;
-    start: string;
-    end: string;
-    photo: string;
-  }
+interface eventType {
+  name: string;
+  description: string;
+  start: string;
+  end: string;
+  photo: string;
+}
 
 const EventDetailView = (props: any) => {
   const { id } = useParams<useParamTypes>();
   const [loading, setLoading] = useState(false);
   const [event, setEvent] = useState<eventType>();
 
-//   Get token from state
-const token = useSelector((state: State) => state.auth.token);
+  //   Get token from state
+  const token = useSelector((state: State) => state.auth.token);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchEvent();
-  },[]);
+  }, []);
 
-  const fetchEvent = useCallback(async () => {
-        setLoading(true);
+  const fetchEvent = useCallback(() => {
+    setLoading(true);
 
-        const header = {
-            headers: {
-            Authorization: 'Bearer ' + token
-          }
-        };
+    const header = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
 
-        callApi(`/events/${id}`, header)
-            .then((res: any) => {
-                setLoading(false);
-                console.log('RES ',res)
-                setEvent(res);
-            })
-            .catch((err) => {
-                setLoading(false);
-                return toast.error(err.message);
-            })
-      },[id, token]);
+    callApi(`/events/${id}`, header)
+      .then((res: any) => {
+        setLoading(false);
+        console.log("RES ", res);
+        setEvent(res);
+      })
+      .catch((err) => {
+        setLoading(false);
+        return toast.error(err.message);
+      });
+  }, [id, token]);
 
   return (
     <div>
       {loading ? (
-                    <div  className="text-center">
-                        <i className='fas fa-spinner fa-spin ml-5'></i>
-                    </div>
-                ) 
-                : (
-        <Row className='d-flex justify-content-center w-70'>
+        <div className="text-center">
+          <i className="fas fa-spinner fa-spin ml-5"></i>
+        </div>
+      ) : (
+        <Row className="d-flex justify-content-center w-70">
           <Col sm="6">
             {/* <Col> */}
             <Card className="card-chart">
               <CardHeader>
-                <CardTitle className="mt-0">{ event ? event.name : 'Event' }</CardTitle>
+                <CardTitle className="mt-0">
+                  {event ? event.name : "Event"}
+                </CardTitle>
               </CardHeader>
               <CardBody>
                 <div className="fill">
-                  { event && event.photo ? <img src={`http://localhost:4000${event.photo}`} width={60} alt="event"/> : <img src={EventImg} alt="event"/>}
+                  {event && event.photo ? (
+                    <img
+                      src={`http://localhost:4000${event.photo}`}
+                      width={60}
+                      alt="event"
+                    />
+                  ) : (
+                    <img src={EventImg} alt="event" />
+                  )}
                 </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
@@ -77,7 +86,7 @@ const token = useSelector((state: State) => state.auth.token);
                   </div>
                   <span>
                     <span>
-                      <strong>{event ? event.description : ''}</strong>
+                      <strong>{event ? event.description : ""}</strong>
                     </span>
                   </span>
                 </div>
@@ -85,19 +94,19 @@ const token = useSelector((state: State) => state.auth.token);
                   <div>
                     <span className="text-secondary">Start Day:</span>
                   </div>
-                  <div> {event ? formatDate(event.start) : ''} </div>
+                  <div> {event ? formatDate(event.start) : ""} </div>
                 </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
                     <span className="text-secondary">End Day:</span>
                   </div>
-                  <div> {event ? formatDate(event.end) : ''} </div>
+                  <div> {event ? formatDate(event.end) : ""} </div>
                 </div>
                 <div className="d-flex mb-3 justify-content-between">
                   <div>
                     <span className="text-secondary">Start time:</span>
                   </div>
-                  <div> {event ? formatTime(event.start) : ''} </div>
+                  <div> {event ? formatTime(event.start) : ""} </div>
                 </div>
               </CardBody>
             </Card>
@@ -106,6 +115,6 @@ const token = useSelector((state: State) => state.auth.token);
       )}
     </div>
   );
-}
+};
 
 export default EventDetailView;

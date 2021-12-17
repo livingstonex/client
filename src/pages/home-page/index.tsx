@@ -1,15 +1,12 @@
 import React from "react";
-import {
-  NavBar,
-  Content
-} from "../../components/index";
+import { Content } from "../../components/index";
 
 const HomePage: React.FC = () => {
   return (
     <>
-        <div className="background">
-            <Content />
-        </div>
+      <div className="background">
+        <Content />
+      </div>
     </>
   );
 };

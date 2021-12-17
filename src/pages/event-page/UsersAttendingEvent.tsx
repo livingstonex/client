@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/index";
 import axios from "axios";
+import CustomTable from "../../components/utilities/CustomTable";
 
 interface useParamTypes {
   id: string;
@@ -51,7 +52,7 @@ const AttendeeDetailView = (props: any) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(20);
 
-  const fetchEvent = useCallback(async () => {
+  const fetchEvent = useCallback(() => {
     setLoading(true);
 
     const header = {
@@ -81,7 +82,7 @@ const AttendeeDetailView = (props: any) => {
       return toast.warn("Invalid user or event");
     }
 
-    setLoading(true);
+    setRegisterLoading(true);
 
     const payload = {
       event_id: eventId,
@@ -99,7 +100,7 @@ const AttendeeDetailView = (props: any) => {
       })
       .then((res: any) => {
         // console.log("Registration Response: ", res);
-        setLoading(false);
+        setRegisterLoading(false);
 
         const { message } = res.data;
 
@@ -111,7 +112,7 @@ const AttendeeDetailView = (props: any) => {
       })
       .catch((err) => {
         console.log("Create ERRRROOORRR: ", err);
-        setLoading(false);
+        setRegisterLoading(false);
         return toast.error(err);
       });
   };
@@ -185,18 +186,12 @@ const AttendeeDetailView = (props: any) => {
                     {event && !event.attendees.length && (
                       <tr>
                         <td colSpan={11} className="text-center">
-                          No events.
+                          No users attending.
                         </td>
                       </tr>
                     )}
                   </tbody>
                 </table>
-                {/* {loading ? (
-                      <div  className="text-center">
-                          <i className='fas fa-spinner fa-spin ml-5'></i>
-                      </div>
-                  ) 
-                  : (event && event.users ? )} */}
               </div>
             </CardBody>
           </Card>
