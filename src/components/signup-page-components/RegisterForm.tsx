@@ -67,7 +67,8 @@ const RegisterForm: React.FC = () => {
       })
       .catch((err) => {
         setLoading(false);
-        return toast.error(err.message);
+        console.log("Sign Up err: ", err);
+        return toast.error(err);
       });
   };
 

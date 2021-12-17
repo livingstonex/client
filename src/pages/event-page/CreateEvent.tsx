@@ -17,7 +17,7 @@ const CreateEvent = (props: any) => {
     end: "",
     photo: null,
   });
-  
+
   const [error, setError] = useState<string>("");
 
   let history = useHistory();
@@ -74,8 +74,16 @@ const CreateEvent = (props: any) => {
     axios
       .post("http://localhost:4000/api/v1/events", data, { headers: headers })
       .then((res) => {
-        console.log("Create Response: ", res);
         setLoading(false);
+
+        setEvent({
+          name: "",
+          description: "",
+          start: "",
+          end: "",
+          photo: null,
+        });
+
         return toast.success("Event Created.");
       })
       .catch((err) => {
@@ -164,7 +172,7 @@ const CreateEvent = (props: any) => {
                 onClick={() => onSubmit()}
               >
                 Create Event
-                { loading ? <i className="fas fa-spinner fa-spin ml-5"></i> : ""}
+                {loading ? <i className="fas fa-spinner fa-spin ml-5"></i> : ""}
               </button>
             </div>
             {/* <div className="text-muted mt-5">© Eventings Inc | All Rights Reserved</div> */}
